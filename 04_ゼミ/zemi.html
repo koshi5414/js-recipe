@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>WebExpertコースHTMLテンプレート</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <h2>それぞれの好きな食べ物は何でしょう</h2>
+    <div class="button">
+      <button id="a_button">えだまめ</button>
+      <button id="b_button">やきとり</button>
+      <button id="c_button">ごぼう</button>
+    </div>
+    <details id="answer">
+      <summary>答えを表示</summary>
+      答えがここにでてくる！
+    </details>
+    <script src="main.js"></script>
+  </body>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    #a_button {
+      background-color: green;
+    }
+    #b_button {
+      background-color: yellow;
+    }
+    #c_button {
+      background-color: brown;
+    }
+    button {
+      padding: 5px;
+    }
+    .button {
+      width: 100vw;
+      height: 100px;
+      background-color: aquamarine;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 30px;
+    }
+  </style>
+</html>
