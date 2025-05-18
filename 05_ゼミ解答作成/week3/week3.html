@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>メモアプリ(配列を使う)</title>
+  </head>
+  <body>
+    <h1>メモアプリ(配列を使う)</h1>
+    <div>
+      <input type="text" id="input" />
+      <button id="add-button">追加</button>
+    </div>
+    <div id="memo-container">
+      <div>おはよう</div>
+      <div>こんにちは</div>
+      <div>こんばんは</div>
+    </div>
+    <script>
+      const input = document.getElementById("input");
+      const addButton = document.getElementById("add-button");
+      const memoContainer = document.getElementById("memo-container");
+
+      // 保存したメモを管理する配列を宣言する。
+      let memos = ["おはよう", "こんにちは", "こんばんは"];
+
+      // 「追加」ボタンを押したら、inputタグに入力した値を保存して、ブラウザ(DOM Tree)に追加する。
+      addButton.onclick = function () {
+        // 1. 配列にinput.valueを追加する。
+        memos.push(input.value);
+
+        // 2. DOM Treeに追加する。(表示する)
+        // 2-1.いったん、memoContainerの中のタグを全部消す。
+        memoContainer.textContent = "";
+    
+        // 2-2. 配列から新しいdivタグを作って、memoContainerに追加する。
+        for (let i = 0; i < memos.length; i++) {
+          // 2-2-1. 新しいdivタグを作る
+          const div = document.createElement("div");
+          // 2-2-2. divタグのtextContentに配列の中身を代入する
+          div.textContent = memos[i];
+          // 2-2-3. memoContainerに追加して、divタグをDOMTreeに追加する
+          memoContainer.append(div);
+        }
+      };
+    </script>
+  </body>
+</html>

@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+   <html lang="ja">
+     <head>
+       <meta charset="UTF-8" />
+       <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+       <title>自販機</title>
+     </head>
+     <body>
+       <h1>自販機</h1>
+       <section>
+        <button id="change-button">
+            お釣り
+        </button>
+       </section>
+       <section>
+        <h3>自販機にお金を入れる</h3>
+        <button id="add-button-100">
+          100円入れる
+        </button>
+        <h4>↓財布↓</h4>
+        <div id="display-saifu">1000</div>
+        <h4>↓投入金額↓</h4>
+        <div id="display-jihanki-money">0</div>
+      </section>
+       <section>
+         <h3>商品を買う</h3>
+         <button id="buy-button-tea" disabled>お茶(100円)</button>
+         <button id="buy-button-beer" disabled>ビール(150円)</button>
+       </section>
+       <section>
+         <h3>買った商品</h3>
+         <div id="display-items"></div>
+       </section>
+       <script>
+         // HTML要素を取得する
+         const buyButtonTea = document.getElementById("buy-button-tea")
+         const buyButtonBeer = document.getElementById("buy-button-beer")
+         const displayItems = document.getElementById("display-items")
+         const adButton100 = document.getElementById("add-button-100")
+         const displaySaifu = document.getElementById("display-saifu")
+         const displayJihankiMoney = document.getElementById("display-jihanki-money")
+         const changeButton = document.getElementById("change-button")
+
+
+         let saifu = 1000
+         let jihankiMoney = 0
+        // **ボタンの状態を更新する関数**
+        function updateButtons() {  
+         buyButtonTea.disabled = jihankiMoney < 100; // 100円未満なら無効化
+         buyButtonBeer.disabled = jihankiMoney < 150; // 150円未満なら無効化
+        }
+
+        //  buyButtonTea.onclick = function () {
+        //     if (jihankiMoney < 100) {
+        //       alert("お金が足りません")
+        //       return
+        //     }
+        //     else {  
+        //     displayItems.textContent = displayItems.textContent +  "🍵"
+        //       jihankiMoney = jihankiMoney - 100
+        //       displayJihankiMoney.textContent = jihankiMoney
+        //       updateButtons()
+            
+        //     }  
+        //  }
+
+        //   //画像で表示
+        //   buyButtonTea.onclick = function () {
+        //     if (jihankiMoney < 100) {
+        //       alert("お金が足りません")
+        //       return
+        //     }
+        //     else {  
+        //     let img = document.createElement("img");
+        //     img.src = "fig/tea.jpg"; 
+        //     img.alt = "お茶"; 
+        //     img.width = 50; 
+        //     img.height = 50;
+
+        //     // `displayItems` に画像を追加
+        //     displayItems.appendChild(img);
+        //     jihankiMoney = jihankiMoney - 100
+        //     displayJihankiMoney.textContent = jihankiMoney
+        //     }  
+        //  }
+
+         //画像で表示その2
+         buyButtonTea.onclick = function () {
+            if (jihankiMoney < 100) {
+              alert("お金が足りません")
+              return
+            }
+            else {  
+            displayItems.innerHTML += '<img src="figure/tea.jpg" alt="お茶" width="50" height="50">';
+            jihankiMoney = jihankiMoney - 100
+            displayJihankiMoney.textContent = jihankiMoney
+            }  
+         }
+
+         buyButtonBeer.onclick = function () {
+            if (jihankiMoney < 150) {
+              alert("お金が足りません")
+              return
+            }
+            else {  
+           displayItems.textContent = displayItems.textContent +  "🍺"
+              jihankiMoney = jihankiMoney - 150
+              displayJihankiMoney.textContent = jihankiMoney
+              updateButtons()
+            }  
+         }
+         adButton100.onclick = function () {
+            if (saifu < 100) {
+              alert("お金が足りません")
+              return
+            }
+            else {
+              jihankiMoney = jihankiMoney + 100
+              displayJihankiMoney.textContent = jihankiMoney
+              saifu = saifu - 100
+              displaySaifu.textContent = saifu
+              updateButtons()
+            }
+         }
+         changeButton.onclick = function () {
+            if (jihankiMoney == 0) {
+              alert("お釣りはありません")
+              return
+            }
+            else {
+              //alert("お釣りは" + jihankiMoney + "円です")
+              saifu = saifu + jihankiMoney
+              jihankiMoney = 0
+              
+              displayJihankiMoney.textContent = jihankiMoney
+              displaySaifu.textContent = saifu
+            }
+         }
+       </script>
+     </body>
+   </html>
